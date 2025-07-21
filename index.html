@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - iOS Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.7;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin: 40px auto;
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            color: #ffffff;
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.01em;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+        
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        .app-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .app-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .app-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 18px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        }
+        
+        .app-card h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+        
+        .app-card p {
+            font-size: 1rem;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px;
+            border-radius: 16px;
+            margin-top: 24px;
+        }
+        
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #8fa3f0;
+            text-decoration: underline;
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .privacy-section h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin: 32px 0 16px 0;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+        
+        .privacy-section h3:first-child {
+            margin-top: 24px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            opacity: 0.5;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section {
+                padding: 32px 24px;
+                margin: 24px auto;
+                border-radius: 20px;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            header {
+                padding: 60px 20px 40px;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection styling */
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+            color: #ffffff;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <p class="subtitle">iOS Developer</p>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>About</h2>
+            <p>I create thoughtfully designed iOS applications that prioritize user experience and elegant simplicity. Each app is crafted with attention to detail, focusing on intuitive interfaces that feel natural and delightful to use.</p>
+        </section>
+
+        <section class="section">
+            <h2>Apps</h2>
+            <div class="app-grid">
+                <div class="app-card">
+                    <div class="app-icon">🌤</div>
+                    <h3>Feels Like</h3>
+                    <p>Beautiful weather with a focus on how it actually feels outside.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">📱</div>
+                    <h3>Your Next App</h3>
+                    <p>Description of your upcoming or current project.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">✨</div>
+                    <h3>In Development</h3>
+                    <p>Something exciting is coming soon. Stay tuned for updates.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Support</h2>
+            <p>Questions about one of my apps? Need help or have feedback? I'm here to help.</p>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:support@yourdomain.com">support@yourdomain.com</a></p>
+                <p><strong>Response time:</strong> Usually within 24 hours</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Privacy</h2>
+            <div class="privacy-section">
+                <p><strong>Effective:</strong> July 21, 2025</p>
+                
+                <h3>Data Collection</h3>
+                <p>My apps are designed with privacy as a core principle. I don't collect, store, or share personal information unless explicitly required for app functionality.</p>
+                
+                <h3>Your Data</h3>
+                <p>Any data processed by my apps remains on your device. I don't transmit personal information to external servers unless necessary for features like cloud synchronization, which is always clearly disclosed.</p>
+                
+                <h3>Contact</h3>
+                <p>Questions about privacy? Reach out at <a href="mailto:privacy@yourdomain.com">privacy@yourdomain.com</a></p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Your Name</p>
+    </footer>
+</body>
+</html>
