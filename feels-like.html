@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feels Like - Weather That Actually Matters</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+        
+        .floating-back-button {
+            position: fixed;
+            top: 60px;
+            left: 25px;
+            z-index: 1000;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .app-icon-large {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .app-icon-large img {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
+        }
+        
+        .app-info h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin-bottom: 32px;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin: 40px auto;
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            color: #ffffff;
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+        
+        h3 {
+            color: #ffffff;
+            margin: 32px 0 16px 0;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.85;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        
+        .feature-description {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        .screenshot {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            aspect-ratio: 9/16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+        
+        .highlight-box {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+            opacity: 1;
+        }
+        
+        .privacy-badge {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 16px 0;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            opacity: 0.5;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .app-info h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section {
+                padding: 32px 24px;
+                margin: 24px auto;
+                border-radius: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            header {
+                padding: 60px 20px 40px;
+            }
+        }
+        
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+            color: #ffffff;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-back-button">
+            <a href="index.html" class="back-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        
+        <header>
+            <div class="app-header">
+                <div class="app-icon-large">🌤</div>
+                <div class="app-info">
+                    <h1>Feels Like</h1>
+                    <p class="tagline">Weather that actually matters</p>
+                    <a href="#" class="download-button">Download on App Store</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Finally, Weather That Gets It</h2>
+            <p>Tired of checking the weather and still being surprised by how it actually feels outside? Feels Like shows you the temperature that matters most — how it actually feels on your skin.</p>
+            
+            <div class="highlight-box">
+                <p><strong>20° that feels like 15°?</strong> We'll tell you it's 15°. Because that's what you're going to experience when you step outside.</p>
+            </div>
+            
+            <p>No more math in your head. No more getting caught off guard. Just honest, straightforward weather that helps you dress appropriately and plan your day with confidence.</p>
+        </section>
+
+        <section class="section">
+            <h2>Built for Real Life</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <div class="feature-title">Feels-Like Focus</div>
+                    <div class="feature-description">The apparent temperature is front and center — because that's what actually matters when you walk outside.</div>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📍</span>
+                    <div class="feature-title">Multiple Locations</div>
+                    <div class="feature-description">Current location plus your saved spots. Swipe to add new places effortlessly.</div>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⏰</span>
+                    <div class="feature-title">Smart Forecasts</div>
+                    <div class="feature-description">Hourly and 7-day outlooks with intelligent summaries that actually tell you what to expect.</div>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🌡️</span>
+                    <div class="feature-title">Your Preferred Units</div>
+                    <div class="feature-description">Celsius or Fahrenheit — whatever feels right to you. Switch anytime with a simple toggle.</div>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <div class="feature-title">Pure iOS Experience</div>
+                    <div class="feature-description">Built with native iOS design principles. Feels like it belongs on your device.</div>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <div class="feature-title">Lightning Fast</div>
+                    <div class="feature-description">Smart caching means instant weather when you need it, with automatic updates to keep things fresh.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Weather With Personality</h2>
+            <p>Gone are the days of boring weather descriptions. Feels Like gives you forecasts with character:</p>
+            
+            <div class="highlight-box">
+                <p><em>"Goldilocks weather - not too hot, not too cold! ✨"</em></p>
+                <p><em>"Rain's plotting something at 3pm. Stay prepared! ☔️"</em></p>
+                <p><em>"Temperature rescue mission! Rocketing from -15° to a much friendlier 5°! 🚀"</em></p>
+            </div>
+            
+            <p>Smart daily briefs and 7-day trend analysis help you understand not just what's happening, but what's coming and why it matters.</p>
+        </section>
+
+        <section class="section">
+            <h2>Privacy You Can Trust</h2>
+            <span class="privacy-badge">🔒 Privacy First</span>
+            
+            <h3>Your Data Stays Yours</h3>
+            <p>Everything stays on your device. Your locations, preferences, and weather data are stored locally using iOS's secure systems.</p>
+            
+            <h3>Minimal Data Collection</h3>
+            <p>We only collect what's necessary: your location coordinates to fetch weather. No tracking, no analytics, no personal profiles.</p>
+            
+            <h3>Trusted Weather Source</h3>
+            <p>We use Open-Meteo, a privacy-focused weather service that doesn't require registration or track users. Just pure weather data.</p>
+        </section>
+
+        <section class="section">
+            <h2>The Technical Details</h2>
+            
+            <h3>What You Get</h3>
+            <p>• Current conditions with feels-like temperature prominence<br>
+            • Hourly forecasts for the next 24 hours<br>
+            • 7-day extended forecasts with trend analysis<br>
+            • Intelligent weather summaries and hazard warnings<br>
+            • Multiple location support with easy management<br>
+            • Temperature unit switching (°C/°F)<br>
+            • Native iOS sharing integration</p>
+            
+            <h3>How It Works</h3>
+            <p>• Uses iOS location services with your permission<br>
+            • Fetches data from Open-Meteo weather API<br>
+            • Caches intelligently to minimize data usage<br>
+            • Updates automatically when you open the app<br>
+            • Stores everything locally on your device</p>
+            
+            <h3>Requirements</h3>
+            <p>• iOS 15.0 or later<br>
+            • Location Services (optional, but recommended)<br>
+            • Internet connection for weather updates</p>
+        </section>
+
+        <section class="section">
+            <h2>Ready for Honest Weather?</h2>
+            <p>No more surprises when you step outside. No more complicated calculations. Just weather that tells you what you actually need to know.</p>
+            
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="#" class="download-button">Download Feels Like</a>
+            </div>
+            
+            <p style="text-align: center; margin-top: 24px; opacity: 0.6;">Available on the App Store</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Resnick Creations</p>
+    </footer>
+</body>
+</html>
