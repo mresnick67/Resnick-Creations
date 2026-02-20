@@ -45,10 +45,10 @@ body::after {
   inset: auto;
   pointer-events: none;
   border-radius: 999px;
-  filter: blur(60px);
-  opacity: 0.22;
+  filter: blur(48px);
+  opacity: 0.18;
   z-index: -1;
-  animation: drift 18s ease-in-out infinite;
+  animation: drift 24s ease-in-out infinite;
 }
 
 body::before {
@@ -193,6 +193,8 @@ h1 {
   padding: clamp(24px, 4.5vw, 42px);
   box-shadow: var(--shadow);
   margin: 24px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 520px;
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
@@ -255,6 +257,7 @@ h1 {
   flex-direction: column;
   gap: 10px;
   min-height: 210px;
+  contain: paint;
   transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
@@ -395,6 +398,7 @@ h1 {
   border-radius: 14px;
   padding: 14px;
   background: rgba(255, 255, 255, 0.03);
+  contain: paint;
   transition: border-color 0.22s ease, transform 0.22s ease, background 0.22s ease;
 }
 
@@ -412,6 +416,56 @@ h1 {
 .list-card p,
 .list-card li {
   font-size: 0.92rem;
+}
+
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.shot-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.shot-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.shot-card figcaption {
+  padding: 10px 12px 12px;
+  color: var(--text-soft);
+  font-size: 0.86rem;
+}
+
+.feature-points {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.feature-point {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.feature-point strong {
+  color: #ffffff;
+}
+
+.kv-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .footer {
@@ -514,6 +568,11 @@ textarea {
 }
 
 @media (max-width: 880px) {
+  body::before,
+  body::after {
+    display: none;
+  }
+
   .split {
     grid-template-columns: 1fr;
   }
