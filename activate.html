@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activate • Resnick Creations</title>
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Resnick Creations<small>Dark • Premium • Product-led</small></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="feels-like.html">Feels Like</a>
+        <a class="active" href="activate.html">Activate</a>
+        <a href="forecheck.html">Forecheck</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">Activate</div>
+      <h1>LiftKit (Activate): local-first training intelligence.</h1>
+      <p class="subtitle">Swift-native iOS workout tracker focused on reliable logging, data portability, and practical coaching insights.</p>
+      <div class="link-row" style="margin-top:20px;">
+        <a class="btn primary" href="https://github.com/mresnick67/Activate" target="_blank" rel="noopener">View GitHub Repo</a>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div>
+        <h2>Product Snapshot</h2>
+        <p>Activate is designed around speed and trust. It prioritizes rapid set logging, clean workout history, and transparent summaries over noisy gimmicks.</p>
+        <ul>
+          <li>Platform: iOS 17+</li>
+          <li>Current stack: SwiftUI + SwiftData</li>
+          <li>Planned next stack: HealthKit + OpenAI API</li>
+          <li>Architecture: local-first MVP (backend deferred to V2)</li>
+        </ul>
+      </div>
+      <aside class="callout">
+        <p><strong>Design principle:</strong> logging speed over visual novelty.<br />
+        One-thumb operation, facts-first summaries, and coachable signals grounded in actual workout history.</p>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>What’s Complete</h2>
+      <div class="list-grid">
+        <div class="list-card"><h4>Core app shell</h4><p>TabView scaffold with Home / History / Exercises / Settings.</p></div>
+        <div class="list-card"><h4>SwiftData model layer</h4><p>Workout, WorkoutSet, Exercise, WorkoutTemplate plus related enums.</p></div>
+        <div class="list-card"><h4>Exercise library</h4><p>91 seeded exercises, searchable and filterable with detail views.</p></div>
+        <div class="list-card"><h4>Workout execution flow</h4><p>Start workout, add exercises, set rows, completion toggles, add/delete sets.</p></div>
+        <div class="list-card"><h4>Rest timer capsule</h4><p>Auto-start on completion with inline controls (-15s / +15s / skip).</p></div>
+        <div class="list-card"><h4>Finish + summary</h4><p>Workout persistence, duration, completed sets, and logged volume with guardrails.</p></div>
+        <div class="list-card"><h4>History list</h4><p>Completed/In Progress sections, scanable metrics, explicit status chips.</p></div>
+        <div class="list-card"><h4>Workout detail</h4><p>Read-only drill-in preserving set order with provenance and formula disclosure.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What’s Next</h2>
+      <p>No active NEXT ticket is currently queued in the public build queue. The immediate follow-up is runtime build verification once the full Xcode toolchain is active.</p>
+      <div class="link-row" style="margin-top:14px;">
+        <a class="btn" href="https://github.com/mresnick67/Activate" target="_blank" rel="noopener">Track roadmap in repo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2026 Resnick Creations</footer>
+</body>
+</html>

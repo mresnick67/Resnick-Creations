@@ -1,324 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resnick Creations</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.5;
-            color: #ffffff;
-            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 50%, #1a1a1a 100%);
-            min-height: 100vh;
-            font-weight: 300;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 80px 20px 60px;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 200;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.7;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-        }
-        
-        .section {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 40px auto;
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        h2 {
-            color: #ffffff;
-            margin-bottom: 24px;
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: -0.01em;
-        }
-        
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.85;
-            font-weight: 300;
-        }
-        
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
-        }
-        
-        .app-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-        
-        .app-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-        
-        .app-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 18px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
-        }
-        
-        .feels-like-icon {
-            background: none;
-            box-shadow: none;
-        }
-        
-        .feels-like-icon img {
-            width: 72px;
-            height: 72px;
-            border-radius: 18px;
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
-        }
-        
-        .app-card h3 {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 12px;
-            color: #ffffff;
-            letter-spacing: -0.01em;
-        }
-        
-        .app-card p {
-            font-size: 1rem;
-            opacity: 0.7;
-            font-weight: 300;
-            margin-bottom: 16px;
-        }
-        
-        .app-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-        
-        .app-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-        }
-        
-        .coming-soon {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 400;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .nav-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .nav-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 16px 24px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .nav-button:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        }
-        
-        .nav-icon {
-            font-size: 1.2rem;
-        }
-        
-
-        
-        footer {
-            text-align: center;
-            padding: 60px 20px 40px;
-            opacity: 0.5;
-            font-weight: 300;
-            font-size: 0.95rem;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section {
-                padding: 32px 24px;
-                margin: 24px auto;
-                border-radius: 20px;
-            }
-            
-            .app-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            
-            .container {
-                padding: 0 16px;
-            }
-            
-            header {
-                padding: 60px 20px 40px;
-            }
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Selection styling */
-        ::selection {
-            background: rgba(102, 126, 234, 0.3);
-            color: #ffffff;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resnick Creations</title>
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-    <header>
-        <h1>Resnick Creations</h1>
-        <p class="subtitle">Product management professional building elegant applications for every-day use.</p>
-    </header>
-
-    <div class="container">
-        <section class="section">
-            <h2>Apps</h2>
-            <div class="app-grid">
-                <div class="app-card">
-                    <div class="app-icon feels-like-icon">
-                        <img src="assets/images/feels-like-icon-120.png" alt="Feels Like Icon">
-                    </div>
-                    <h3>Feels Like</h3>
-                    <p>Beautiful weather with a focus on how it actually feels outside.</p>
-                    <a href="feels-like.html" class="app-link">Learn More</a>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">🏠</div>
-                    <h3>I Need A House</h3>
-                    <p>Calculate your real buying power for a mortgage based on actual spending habits.</p>
-                    <div class="coming-soon">Coming Soon</div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section">
-            <h2>About</h2>
-            <p>I am a Product Professional based in Toronto, Ontario. I am working on passion projects, primarily building with AI-powered tools. My intention is to improve my development skills while gaining exposure to cutting edge AI tools. My design principles prioritize user experience and elegant simplicity.</p>
-        </section>
-
-        <section class="section">
-            <div class="nav-buttons">
-                <a href="support.html" class="nav-button">
-                    <span class="nav-icon">💬</span>
-                    Support
-                </a>
-                <a href="privacy.html" class="nav-button">
-                    <span class="nav-icon">🔒</span>
-                    Privacy Policy
-                </a>
-            </div>
-        </section>
-
-
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Resnick Creations<small>Dark • Premium • Product-led</small></a>
+      <div class="nav-links">
+        <a class="active" href="index.html">Home</a>
+        <a href="feels-like.html">Feels Like</a>
+        <a href="activate.html">Activate</a>
+        <a href="forecheck.html">Forecheck</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
     </div>
+  </nav>
 
-    <footer>
-        <p>© 2025 Resnick Creations</p>
-    </footer>
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">Portfolio</div>
+      <h1>Premium product experiences.<br />Built with execution, not fluff.</h1>
+      <p class="subtitle">Product management professional building elegant applications for every-day use.</p>
+    </section>
+
+    <section class="section">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <span class="badge">🌤️ iOS App</span>
+          <h3>Feels Like</h3>
+          <p>Beautiful weather with a focus on how it actually feels outside.</p>
+          <div class="link-row">
+            <a class="btn primary" href="feels-like.html">Project page</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <span class="badge">🏋️ iOS + AI</span>
+          <h3>Activate</h3>
+          <p>Swift-native workout tracker focused on reliable logging, data portability, and practical coaching insights.</p>
+          <div class="link-row">
+            <a class="btn primary" href="activate.html">Project page</a>
+            <a class="btn" href="https://github.com/mresnick67/Activate" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <span class="badge">🏒 Analytics Platform</span>
+          <h3>Forecheck Fantasy</h3>
+          <p>Fantasy hockey intelligence with streamer scoring, trend analysis, scans, and social decision support.</p>
+          <div class="link-row">
+            <a class="btn primary" href="forecheck.html">Project page</a>
+            <span class="badge">Private repository</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>About</h2>
+      <p>I am a Product Professional based in Toronto, Ontario. I am working on passion projects, primarily building with AI-powered tools. My intention is to improve my development skills while gaining exposure to cutting edge AI tools. My design principles prioritize user experience and elegant simplicity.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2026 Resnick Creations
+  </footer>
 </body>
 </html>

@@ -1,451 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feels Like - Weather That Doesn't Lie to Your Face</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.5;
-            color: #ffffff;
-            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 50%, #1a1a1a 100%);
-            min-height: 100vh;
-            font-weight: 300;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 80px 20px 60px;
-        }
-        
-        .floating-back-button {
-            position: fixed;
-            top: 60px;
-            left: 25px;
-            z-index: 1000;
-        }
-        
-        .back-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .back-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .app-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .app-icon-large {
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .app-icon-large img {
-            width: 120px;
-            height: 120px;
-            border-radius: 28px;
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
-        }
-        
-        .app-info h1 {
-            font-size: 3.5rem;
-            font-weight: 200;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .tagline {
-            font-size: 1.4rem;
-            opacity: 0.8;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            margin-bottom: 32px;
-        }
-        
-        .download-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
-        }
-        
-        .download-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
-        }
-        
-        .section {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 40px auto;
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        h2 {
-            color: #ffffff;
-            margin-bottom: 24px;
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: -0.01em;
-            text-align: center;
-        }
-        
-        h3 {
-            color: #ffffff;
-            margin: 32px 0 16px 0;
-            font-size: 1.4rem;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-        }
-        
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.85;
-            font-weight: 300;
-            margin-bottom: 16px;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-4px);
-        }
-        
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            display: block;
-        }
-        
-        .feature-title {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-        
-        .feature-description {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-        
-        .highlight-box {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 16px;
-            padding: 24px;
-            margin: 24px 0;
-        }
-        
-        .highlight-box p {
-            margin-bottom: 0;
-            opacity: 1;
-        }
-        
-        .privacy-badge {
-            display: inline-block;
-            background: rgba(76, 175, 80, 0.2);
-            color: #81c784;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin: 16px 0;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-        
-        .testimonial-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 20px;
-            margin: 16px 0;
-            font-style: italic;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 60px 20px 40px;
-            opacity: 0.5;
-            font-weight: 300;
-            font-size: 0.95rem;
-        }
-        
-        @media (max-width: 768px) {
-            .app-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .app-info h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section {
-                padding: 32px 24px;
-                margin: 24px auto;
-                border-radius: 20px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 0 16px;
-            }
-            
-            header {
-                padding: 60px 20px 40px;
-            }
-        }
-        
-        ::selection {
-            background: rgba(102, 126, 234, 0.3);
-            color: #ffffff;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feels Like • Resnick Creations</title>
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="floating-back-button">
-            <a href="index.html" class="back-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-        </div>
-        
-        <header>
-            <div class="app-header">
-                <div class="app-icon-large">
-                    <img src="assets/images/feels-like-icon-120.png" alt="Feels Like Icon">
-                </div>
-                <div class="app-info">
-                    <h1>Feels Like</h1>
-                    <p class="tagline">Weather that doesn't lie to your face</p>
-                    <a href="#" class="download-button">Stop Getting Weather-Catfished</a>
-                </div>
-            </div>
-        </header>
-
-        <section class="section">
-            <h2>We Need to Talk About Weather Apps</h2>
-            <p>Let's be honest. You've been in an abusive relationship with weather apps for years. They tell you it's 20°, you dress for 20°, and then you step outside feeling like you've been pranked by Mother Nature herself.</p>
-            
-            <div class="highlight-box">
-                <p><strong>Weather App:</strong> "It's a lovely 15° today!" 🌞<br>
-                <strong>Reality:</strong> *Feels like you're living in a refrigerator* 🧊<br>
-                <strong>You:</strong> "Why did I trust you again?" 😭</p>
-            </div>
-            
-            <p>Feels Like is here to end this toxic relationship. We show you the temperature that actually matters — the one your skin will experience, not some meteorological theory that sounds nice on paper.</p>
-        </section>
-
-        <section class="section">
-            <h2>Finally, an Honest Weather App</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🎯</span>
-                    <div class="feature-title">No More Weather Lies</div>
-                    <div class="feature-description">The "feels like" temperature gets the spotlight it deserves. Because your skin doesn't care about air pressure charts.</div>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">📍</span>
-                    <div class="feature-title">Multiple Disappointments... I Mean Locations</div>
-                    <div class="feature-description">Check the weather-induced suffering in all your favorite places! Swipe right to add new locations (unlike dating apps, this actually works).</div>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">⏰</span>
-                    <div class="feature-title">Smart Weather Prophecies</div>
-                    <div class="feature-description">Our forecasts have personality. No more boring "partly cloudy" nonsense. We'll tell you when Thor's throwing a tantrum.</div>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🌡️</span>
-                    <div class="feature-title">Temperature Flexibility</div>
-                    <div class="feature-description">Celsius or Fahrenheit — we don't judge your temperature preference. Unlike that friend who insists metric is "obviously superior."</div>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">📱</span>
-                    <div class="feature-title">Feels Like Home on iOS</div>
-                    <div class="feature-description">Built with love for iOS. So native, you'll forget it wasn't made by Apple (don't tell Tim Cook we said that).</div>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
-                    <div class="feature-title">Faster Than Your Excuses</div>
-                    <div class="feature-description">Smart caching means instant weather info. No more "sorry I'm late, my weather app was loading" excuses.</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Weather With Actual Personality</h2>
-            <p>We're done with robotic weather reports. Our app talks to you like a friend who's actually helpful (rare, we know):</p>
-            
-            <div class="testimonial-box">
-                <p><em>"Temperature rescue mission! Rocketing from -15° to a much friendlier 5°! 🚀"</em></p>
-            </div>
-            
-            <div class="testimonial-box">
-                <p><em>"Rain's plotting something at 3pm. Stay prepared! ☔️"</em></p>
-            </div>
-            
-            <div class="testimonial-box">
-                <p><em>"Thor is joining the battle around 8pm - Hopefully the rest of The Avengers aren't needed. 🌩️"</em></p>
-            </div>
-            
-            <p>Our weather summaries actually make sense, our trend analysis doesn't require a meteorology degree, and we'll warn you about freezing rain before you become an accidental ice sculpture.</p>
-        </section>
-
-        <section class="section">
-            <h2>Privacy That's Actually Private</h2>
-            <span class="privacy-badge">🔒 We're Not Creepy</span>
-            
-            <h3>Your Data Doesn't Leave Your Phone</h3>
-            <p>Everything stays on your device. We're not building a profile of your weather-checking obsessions to sell to Big Umbrella.</p>
-            
-            <h3>We Only Collect What We Need</h3>
-            <p>Just your location coordinates to get weather. No tracking, no analytics, no "but what's your favorite weather emoji?" surveys.</p>
-            
-            <h3>Our Weather Source Isn't Shady</h3>
-            <p>We use Open-Meteo, a weather service that's more interested in accurate forecasts than your personal information. Revolutionary, we know.</p>
-        </section>
-
-        <section class="section">
-            <h2>What You Actually Get</h2>
-            
-            <h3>The Good Stuff</h3>
-            <p>• Current weather that tells you how it REALLY feels outside<br>
-            • Hourly forecasts for the next 24 hours (because planning ahead is apparently important)<br>
-            • 7-day outlook with trend analysis that doesn't sound like robot poetry<br>
-            • Weather warnings that actually make sense ("slippery roads ahead" not "atmospheric moisture probability elevated")<br>
-            • Easy location management (add cities without a PhD in geography)<br>
-            • Temperature units that won't start international incidents<br>
-            • Sharing that works (unlike your friend's vacation plans)</p>
-            
-            <h3>The Technical Stuff (For the Nerds)</h3>
-            <p>• iOS location services that ask nicely for permission<br>
-            • Real weather data from actual meteorologists (not Dave from accounting)<br>
-            • Smart caching that saves your data plan<br>
-            • Updates automatically when you remember to check<br>
-            • Everything stored locally (because your phone is apparently more trustworthy than "the cloud")</p>
-            
-            <h3>What You Need</h3>
-            <p>• iOS 15.0 or later (if your phone is older, we have bigger problems)<br>
-            • Location services enabled (optional, but recommended unless you enjoy weather roulette)<br>
-            • Internet connection for updates (shocking, we know)</p>
-        </section>
-
-        <section class="section">
-            <h2>Ready to Break Up With Lying Weather Apps?</h2>
-            <p>No more weather-induced trust issues. No more calculating wind chill in your head. No more getting dressed for 20° and stepping into what feels like the Arctic tundra.</p>
-            
-            <p>Just honest, straightforward weather that prepares you for what you'll actually experience when you brave the outdoors.</p>
-            
-            <div style="text-align: center; margin-top: 32px;">
-                <a href="#" class="download-button">Download and Feel the Difference</a>
-            </div>
-            
-            <p style="text-align: center; margin-top: 24px; opacity: 0.6;">Available on the App Store (where all the cool apps hang out)</p>
-        </section>
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Resnick Creations<small>Dark • Premium • Product-led</small></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="feels-like.html">Feels Like</a>
+        <a href="activate.html">Activate</a>
+        <a href="forecheck.html">Forecheck</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
     </div>
+  </nav>
 
-    <footer>
-        <p>© 2025 Resnick Creations</p>
-    </footer>
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">Feels Like</div>
+      <h1>Weather that doesn't lie to your face.</h1>
+      <p class="subtitle">Honest weather built for real-world decisions, not misleading headline temperatures.</p>
+      <div class="link-row" style="margin-top:20px;">
+        <a class="btn primary" href="#">Stop Getting Weather-Catfished</a>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div>
+        <h2>We Need to Talk About Weather Apps</h2>
+        <p>Let's be honest. Most weather apps tell you one number, your skin experiences another, and your outfit loses the battle immediately.</p>
+        <p>Feels Like puts the <em>actual</em> experience first, so you can dress right, plan better, and stop getting ambushed by fake “nice weather.”</p>
+      </div>
+      <aside class="callout">
+        <p><strong>Weather App:</strong> “It’s 15° and lovely.”<br />
+        <strong>Reality:</strong> Wind chill says “absolutely not.”<br />
+        <strong>You:</strong> betrayed, again.</p>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>Finally, an Honest Weather App</h2>
+      <div class="list-grid">
+        <div class="list-card"><h4>🎯 No More Weather Lies</h4><p>The “feels like” temp gets center stage.</p></div>
+        <div class="list-card"><h4>📍 Multi-Location Support</h4><p>Track multiple cities with clean swipe-first management.</p></div>
+        <div class="list-card"><h4>⏰ Smart Forecast Copy</h4><p>Forecasts with personality and practical context.</p></div>
+        <div class="list-card"><h4>🌡️ Celsius or Fahrenheit</h4><p>Use whichever unit you live by.</p></div>
+        <div class="list-card"><h4>📱 Native iOS Experience</h4><p>Built for speed, clarity, and one-thumb use.</p></div>
+        <div class="list-card"><h4>⚡ Fast by Design</h4><p>Smart caching keeps weather ready instantly.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Privacy That's Actually Private</h2>
+      <p>Everything is designed to stay on-device where possible. No creepy tracking, no invasive profiling, and no over-collection for no reason.</p>
+      <ul>
+        <li>Only essential location data for weather retrieval</li>
+        <li>No ad tracking or analytics creep</li>
+        <li>Open-Meteo as the weather data source</li>
+      </ul>
+      <div class="link-row" style="margin-top:18px;">
+        <a class="btn" href="privacy.html">Read full privacy policy</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What You Actually Get</h2>
+      <ul>
+        <li>Current weather focused on true outdoor feel</li>
+        <li>Hourly forecast for the next 24 hours</li>
+        <li>7-day outlook with trend context</li>
+        <li>Readable warning language that actually helps</li>
+        <li>Simple location management and sharing</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">© 2026 Resnick Creations</footer>
 </body>
 </html>
