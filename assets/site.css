@@ -478,6 +478,42 @@ h1 {
   color: #ffffff;
 }
 
+.feature-list-inline {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 22px;
+}
+
+.feature-list-inline li {
+  position: relative;
+  margin: 0;
+  padding: 12px 0 12px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-dim);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.feature-list-inline li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  opacity: 0.9;
+}
+
+.feature-list-inline li strong {
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 3px;
+}
+
 .kv-grid {
   display: grid;
   gap: 12px;
@@ -589,7 +625,8 @@ textarea {
     display: none;
   }
 
-  .split {
+  .split,
+  .feature-list-inline {
     grid-template-columns: 1fr;
   }
 
