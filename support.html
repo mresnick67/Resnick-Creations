@@ -1,423 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - Resnick Creations</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.5;
-            color: #ffffff;
-            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 50%, #1a1a1a 100%);
-            min-height: 100vh;
-            font-weight: 300;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 80px 20px 60px;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 200;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.7;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-        }
-        
-        .floating-back-button {
-            position: fixed;
-            top: 60px;
-            left: 25px;
-            z-index: 1000;
-        }
-        
-        .back-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .back-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .section {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 40px auto;
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        h2 {
-            color: #ffffff;
-            margin-bottom: 24px;
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: -0.01em;
-        }
-        
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.85;
-            font-weight: 300;
-            margin-bottom: 24px;
-        }
-        
-        .contact-form {
-            margin-top: 32px;
-        }
-        
-        .form-group {
-            margin-bottom: 24px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #ffffff;
-            font-weight: 400;
-            font-size: 1rem;
-        }
-        
-        input[type="text"],
-        input[type="email"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            color: #ffffff;
-            font-size: 1rem;
-            font-family: inherit;
-            font-weight: 300;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        select {
-            cursor: pointer;
-        }
-        
-        select option {
-            background: #2d2d2d;
-            color: #ffffff;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
-            font-family: inherit;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
-        }
-        
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .btn-loading {
-            display: none;
-        }
-        
-        .form-status {
-            margin-top: 16px;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        
-        .form-status.success {
-            background: rgba(76, 175, 80, 0.2);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            color: #81c784;
-        }
-        
-        .form-status.error {
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid rgba(244, 67, 54, 0.3);
-            color: #ef5350;
-        }
-        
-        .contact-info {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 28px;
-            border-radius: 16px;
-            margin-top: 40px;
-        }
-        
-        .contact-info a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 400;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-info a:hover {
-            color: #8fa3f0;
-            text-decoration: underline;
-        }
-        
-        .contact-info p {
-            margin-bottom: 12px;
-        }
-        
-        .contact-info p:last-child {
-            margin-bottom: 0;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 60px 20px 40px;
-            opacity: 0.5;
-            font-weight: 300;
-            font-size: 0.95rem;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section {
-                padding: 32px 24px;
-                margin: 24px auto;
-                border-radius: 20px;
-            }
-            
-            .container {
-                padding: 0 16px;
-            }
-            
-            header {
-                padding: 60px 20px 40px;
-            }
-        }
-        
-        ::selection {
-            background: rgba(102, 126, 234, 0.3);
-            color: #ffffff;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support • Resnick Creations</title>
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="floating-back-button">
-            <a href="index.html" class="back-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-        </div>
-        
-        <header>
-            <h1>Support</h1>
-            <p class="subtitle">How can I help?</p>
-        </header>
-
-        <section class="section">
-            <h2>Get in Touch</h2>
-            <p>Having trouble with one of my apps? Have a suggestion or just want to say hello? I'd love to hear from you.</p>
-            
-            <form class="contact-form" id="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="from_name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="from_email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="app">Which app is this about?</label>
-                    <select id="app" name="app_name">
-                        <option value="">Select an app (optional)</option>
-                        <option value="feels-like">Feels Like</option>
-                        <option value="i-need-a-house">I Need A House</option>
-                        <option value="general">General inquiry</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Please describe your question or issue in detail..." required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn" id="submit-btn">
-                    <span class="btn-text">Send Message</span>
-                    <span class="btn-loading" style="display: none;">Sending...</span>
-                </button>
-                
-                <div class="form-status" id="form-status" style="display: none;"></div>
-            </form>
-            
-            <div class="contact-info">
-                <p><strong>Direct Email:</strong> <a href="mailto:resnickcreations@gmail.com">resnickcreations@gmail.com</a></p>
-                <p><strong>Response Time:</strong> Usually within 24 hours</p>
-                <p><strong>Support Hours:</strong> Monday - Friday, 9 AM - 6 PM EST</p>
-            </div>
-        </section>
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Resnick Creations</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="feels-like.html">Feels Like</a>
+        <a href="activate.html">Activate</a>
+        <a href="forecheck.html">Forecheck</a>
+        <a class="active" href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
     </div>
+  </nav>
 
-    <footer>
-        <p>© 2025 Resnick Creations</p>
-    </footer>
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">Support</div>
+      <h1>Get in touch.</h1>
+      <p class="subtitle">Bug report, product feedback, feature idea, or partnership inquiry — send it through.</p>
+    </section>
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    
-    <script>
-        // Initialize EmailJS with your public key
-        // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-        emailjs.init('PBKjCOJitc6Qw1Nh0');
+    <section class="section split">
+      <div>
+        <h2>Contact Form</h2>
+        <form class="form-grid" id="contact-form">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="from_name" required />
+          </div>
 
-        // Form submission handling
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const submitBtn = document.getElementById('submit-btn');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoading = submitBtn.querySelector('.btn-loading');
-            const formStatus = document.getElementById('form-status');
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline';
-            formStatus.style.display = 'none';
-            
-            // Send email using EmailJS
-            // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
-            emailjs.sendForm('service_am7jvk4', 'template_i6u9lc2', this)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    
-                    // Show success message
-                    formStatus.textContent = 'Message sent successfully! We\'ll get back to you within 24 hours.';
-                    formStatus.className = 'form-status success';
-                    formStatus.style.display = 'block';
-                    
-                    // Reset form
-                    document.getElementById('contact-form').reset();
-                    
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    
-                    // Show error message
-                    formStatus.textContent = 'Sorry, there was an error sending your message. Please try again or email us directly.';
-                    formStatus.className = 'form-status error';
-                    formStatus.style.display = 'block';
-                })
-                .finally(function() {
-                    // Reset button state
-                    submitBtn.disabled = false;
-                    btnText.style.display = 'inline';
-                    btnLoading.style.display = 'none';
-                });
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="from_email" required />
+          </div>
+
+          <div>
+            <label for="app">Which app is this about?</label>
+            <select id="app" name="app_name">
+              <option value="">Select an app (optional)</option>
+              <option value="feels-like">Feels Like</option>
+              <option value="activate">Activate</option>
+              <option value="forecheck-fantasy">Forecheck Fantasy</option>
+              <option value="general">General inquiry</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Share what’s going on and what outcome you want."></textarea>
+          </div>
+
+          <div class="link-row">
+            <button type="submit" class="btn primary" id="submit-btn" style="cursor:pointer;">Send Message</button>
+          </div>
+          <div class="status" id="form-status"></div>
+        </form>
+      </div>
+
+      <aside class="callout">
+        <p><strong>Direct email:</strong><br />resnickcreations@gmail.com</p>
+        <p style="margin-top: 12px;"><strong>Response time:</strong><br />Usually within 24 hours.</p>
+        <p style="margin-top: 12px;"><strong>Support hours:</strong><br />Monday–Friday, 9 AM–6 PM EST.</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">© 2026 Resnick Creations</footer>
+
+  <script src="assets/site.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    emailjs.init('PBKjCOJitc6Qw1Nh0');
+
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const submitBtn = document.getElementById('submit-btn');
+      const formStatus = document.getElementById('form-status');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formStatus.className = 'status';
+      formStatus.style.display = 'none';
+
+      emailjs.sendForm('service_am7jvk4', 'template_i6u9lc2', this)
+        .then(function () {
+          formStatus.textContent = "Message sent successfully. We'll get back to you within 24 hours.";
+          formStatus.className = 'status success';
+          formStatus.style.display = 'block';
+          document.getElementById('contact-form').reset();
+        }, function () {
+          formStatus.textContent = 'Sorry, there was an error sending your message. Please email directly.';
+          formStatus.className = 'status error';
+          formStatus.style.display = 'block';
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
         });
-    </script>
+    });
+  </script>
 </body>
 </html>
