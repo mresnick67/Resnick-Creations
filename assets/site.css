@@ -239,6 +239,15 @@ h1 {
   margin: 14px 0 0 20px;
 }
 
+.section-note {
+  margin-top: 16px;
+  padding: 10px 0 10px 14px;
+  border-left: 2px solid rgba(70, 212, 255, 0.5);
+  color: rgba(245, 247, 255, 0.9);
+  background: linear-gradient(90deg, rgba(70, 212, 255, 0.08), rgba(70, 212, 255, 0));
+  border-radius: 0 10px 10px 0;
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
