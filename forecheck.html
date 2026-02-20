@@ -9,7 +9,7 @@
 <body>
   <nav class="top-nav">
     <div class="container nav-inner">
-      <a class="brand" href="index.html">Resnick Creations<small>Dark • Premium • Product-led</small></a>
+      <a class="brand" href="index.html">Resnick Creations</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="feels-like.html">Feels Like</a>
@@ -23,50 +23,55 @@
 
   <main class="container">
     <section class="hero">
-      <div class="kicker">Forecheck Fantasy</div>
-      <h1>Fantasy hockey intelligence with edge.</h1>
-      <p class="subtitle">iOS app + FastAPI backend for competitive managers who want faster adds, sharper scans, and better league decisions.</p>
+      <div class="kicker">Forecheck Fantasy • Now in Beta in TestFlight</div>
+      <h1>Win more fantasy hockey decisions.</h1>
+      <p class="subtitle">Forecheck gives competitive managers a faster way to find streamers, read trend signals, and act with confidence every week.</p>
       <div class="link-row" style="margin-top:20px;">
-        <span class="badge">Private GitHub repository</span>
+        <a class="btn primary" href="support.html">Join the TestFlight Beta</a>
       </div>
     </section>
 
     <section class="section split">
       <div>
-        <h2>What It Does</h2>
-        <p>Forecheck combines rolling analytics, streamer scoring, and rule-based scans with a social feed so managers can discover opportunities and debate moves in one place.</p>
-        <ul>
-          <li>Discover top streamers and trending players</li>
-          <li>Deep player detail with rolling windows (L5/L10/L20/Season)</li>
-          <li>Custom scan rules for targeted adds</li>
-          <li>Social posts, polls, comments, and notifications</li>
-        </ul>
+        <h2>Built for Managers Who Hate Guessing</h2>
+        <p>Forecheck is for serious fantasy players who want signal over noise. Instead of manually jumping between box scores, ownership data, and group chats, you get one focused workflow for waiver decisions.</p>
+        <p>It is designed to help you move faster on opportunities while still understanding <em>why</em> a player is worth the add.</p>
       </div>
       <aside class="callout">
-        <p><strong>Tech stack:</strong> Swift iOS client + FastAPI backend.<br />
-        NHL data ingestion, Yahoo ownership sync, and server-side evaluation power the decision layer.</p>
+        <p><strong>Core promise:</strong> better adds, better timing, better decisions.</p>
       </aside>
     </section>
 
     <section class="section">
-      <h2>Architecture</h2>
+      <h2>What You Can Do in Forecheck</h2>
       <div class="list-grid">
-        <div class="list-card"><h4>Frontend</h4><p>Native iOS app for discovery, drill-in detail, scans, feed, and alerts.</p></div>
-        <div class="list-card"><h4>Backend API</h4><p>FastAPI service handling auth, player data, stats windows, scans, and feed endpoints.</p></div>
-        <div class="list-card"><h4>Data Sources</h4><p>NHL Stats API + GameCenter boxscores + Yahoo ownership sync signals.</p></div>
-        <div class="list-card"><h4>Production Base URL</h4><p><code>https://forecheck-fantasy-api.fly.dev</code></p></div>
+        <div class="list-card"><h4>📈 Discover streamers quickly</h4><p>Find high-upside waiver options using ranked streamer scoring and trend-aware signals.</p></div>
+        <div class="list-card"><h4>🔍 Drill into player momentum</h4><p>See rolling windows (L5/L10/L20/Season), recent games, and schedule context in one place.</p></div>
+        <div class="list-card"><h4>🧪 Build custom scans</h4><p>Create your own rules so the app surfaces players that match your strategy, not generic rankings.</p></div>
+        <div class="list-card"><h4>💬 Use social context</h4><p>Posts, polls, and comments let you compare takes and pressure-test decisions before you commit.</p></div>
+        <div class="list-card"><h4>🔔 Stay on top of updates</h4><p>Notification surfaces keep key opportunities and changes from slipping by.</p></div>
+        <div class="list-card"><h4>⚡ Move with confidence</h4><p>The experience is tuned for weekly execution speed during the most important windows.</p></div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Core Product Flows</h2>
+      <h2>Who It’s For</h2>
       <ul>
-        <li><strong>Streamers:</strong> ranked discovery and trend monitoring</li>
-        <li><strong>Player Detail:</strong> usage context, recent games, schedule, and windowed stats</li>
-        <li><strong>Scans:</strong> rule composition and automated candidate evaluation</li>
-        <li><strong>Community:</strong> feed + polls + comments around roster decisions</li>
-        <li><strong>Alerts:</strong> unread counts and notifications for relevant updates</li>
+        <li>Fantasy hockey managers in competitive leagues</li>
+        <li>Players who stream roster spots and optimize weekly categories</li>
+        <li>Managers who want data-backed decisions without drowning in spreadsheets</li>
       </ul>
+    </section>
+
+    <section class="section">
+      <h2>Portfolio Build Notes</h2>
+      <p>Forecheck is built as a native iOS app with a dedicated backend service for ingestion, analytics, and scan evaluation.</p>
+      <div class="list-grid">
+        <div class="list-card"><h4>Frontend</h4><p>Swift iOS client focused on discovery, detail views, scans, feed, and alerts.</p></div>
+        <div class="list-card"><h4>Backend</h4><p>FastAPI service powering auth, rolling analytics windows, scans, and feed APIs.</p></div>
+        <div class="list-card"><h4>Data inputs</h4><p>NHL Stats API, GameCenter boxscores, and Yahoo ownership sync signals.</p></div>
+        <div class="list-card"><h4>Repository</h4><p>Private GitHub repository by design for active product development.</p></div>
+      </div>
     </section>
   </main>
 
